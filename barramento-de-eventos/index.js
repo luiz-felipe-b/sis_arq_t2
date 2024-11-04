@@ -29,6 +29,10 @@ app.post('/eventos', async (req, res) => { //recebe eventos
     //envia o evento para o microsservico de classificacao
     await axios.post("http://localhost:7000/eventos", evento);
   } catch (error) {}
+  try {
+    //envia o evento para o microsservico de logs
+    await axios.post("http://localhost:8000/eventos", evento);
+  } catch (error) {}
   res.status(200).send({ msg: 'ok' });
 });
 

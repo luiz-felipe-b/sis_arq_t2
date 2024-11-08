@@ -15,23 +15,23 @@ app.post('/eventos', async (req, res) => { //recebe eventos
   console.log(evento);
   try {
     //envia para o microsserviço de lembretes
-    await axios.post('http://localhost:4000/eventos', evento);
+    await axios.post('http://lembretes-service:4000/eventos', evento);
   } catch (error) {}
   try {
     //envia para o microsserviço de observações
-    await axios.post('http://localhost:5000/eventos', evento);
+    await axios.post('http://observacoes-service:5000/eventos', evento);
   } catch (error) {}
   try {
     //envia o evento para o microsservico de consulta
-    await axios.post('http://localhost:6000/eventos', evento);
+    await axios.post('http://consulta-service:6000/eventos', evento);
   } catch (error) {}
   try {
     //envia o evento para o microsservico de classificacao
-    await axios.post("http://localhost:7000/eventos", evento);
+    await axios.post("http://classificacao-service:7000/eventos", evento);
   } catch (error) {}
   try {
     //envia o evento para o microsservico de logs
-    await axios.post("http://localhost:8000/eventos", evento);
+    await axios.post("http://logs-service:8000/eventos", evento);
   } catch (error) {}
   res.status(200).send({ msg: 'ok' });
 });
@@ -41,5 +41,5 @@ app.get('/eventos', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Barramento de eventos em http://localhost:${port}`);
+  console.log(`Barramento de eventos em http://barramento-de-eventos-service:${port}`);
 } );

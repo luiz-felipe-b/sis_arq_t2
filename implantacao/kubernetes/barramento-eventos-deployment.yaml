@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: barramento-de-eventos-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: barramento-de-eventos
+  template:
+    metadata:
+      labels:
+        app: barramento-de-eventos
+    spec:
+      containers:
+        - name: barramento-de-eventos
+          image: cadudias/barramento-de-eventos:latest
+          ports:
+            - containerPort: 10000
+          resources:
+            limits:
+              cpu: 1
+              memory: 256Mi

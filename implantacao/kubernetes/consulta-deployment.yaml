@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consulta-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consulta
+  template:
+    metadata:
+      labels:
+        app: consulta
+    spec:
+      containers:
+        - name: consulta
+          image: cadudias/consulta:latest
+          ports:
+            - containerPort: 6000
+          resources:
+            limits:
+              cpu: 1
+              memory: 256Mi

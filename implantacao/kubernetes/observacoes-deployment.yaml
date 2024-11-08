@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: observacoes-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: observacoes
+  template:
+    metadata:
+      labels:
+        app: observacoes
+    spec:
+      containers:
+        - name: observacoes
+          image: cadudias/observacoes:latest
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              cpu: 1
+              memory: 256Mi

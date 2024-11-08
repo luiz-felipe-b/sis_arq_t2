@@ -35,8 +35,8 @@ app.post('/eventos', (req, res) => {
 });
 
 app.listen(port, async () => {
-  console.log(`Consultas em http://localhost:${port}`);
-  const resp = await axios.get('http://localhost:10000/eventos');
+  console.log(`Consultas em http://consulta-service:${port}`);
+  const resp = await axios.get('http://barramento-de-eventos-service:10000/eventos');
   //axios entrega os dados na propriedade data
   resp.data.forEach((valor) => {
     try {

@@ -15,7 +15,7 @@ const funcoes = {
         const observacoes = observacoesPorLembrete[observacao.lembreteId];
         const obsParaAtualizar = observacoes.find(o => o.id === observacao.id);
         obsParaAtualizar.status = observacao.status;
-        axios.post('http://localhost:10000/eventos', {
+        axios.post('http://barramento-de-eventos-service:10000/eventos', {
             tipo: 'ObservacaoAtualizada',
             dados: {
                 id: observacao.id,
@@ -44,7 +44,7 @@ app.put('/lembretes/:id/observacoes', async (req, res) => {
     const observacoesDoLembrete = observacoesPorLembrete[req.params.id] || [];
     observacoesDoLembrete.push({ id: idObservacao, texto, status: 'aguardando' });
     observacoesPorLembrete[req.params.id] = observacoesDoLembrete;
-    await axios.post('http://localhost:10000/eventos', {
+    await axios.post('http://barramento-de-eventos-service:10000/eventos', {
         tipo: "ObservacaoCriada",
         dados: {
             id: idObservacao,
@@ -57,5 +57,5 @@ app.put('/lembretes/:id/observacoes', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Observacoes em http://localhost:${port}`);
+  console.log(`Observacoes em http://observacoes-service:${port}`);
 });

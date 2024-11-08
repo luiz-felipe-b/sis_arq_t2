@@ -19,7 +19,7 @@ app.put('/lembretes', async (req, res) => {
     lembretes[contador] = {
       contador, texto
     };
-    await axios.post('http://localhost:10000/eventos', {
+    await axios.post('http://barramento-de-eventos-service:10000/eventos', {
       tipo: "LembreteCriado",
       dados: {
         contador,
@@ -35,5 +35,5 @@ app.post('/eventos', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Lembretes em http://localhost:${port}`);
+  console.log(`Lembretes em http://lembretes-service:${port}`);
 });
